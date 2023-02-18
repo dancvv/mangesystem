@@ -1,5 +1,5 @@
 {
-  "name": "ruoyi",
+  "name": "UAV LAB",
   "version": "3.6.2",
   "description": "无人机实时任务处理系统",
   "author": "name",
@@ -33,7 +33,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/y_project/RuoYi-Cloud.git"
+    "url": "github.com"
   },
   "dependencies": {
     "@riophae/vue-treeselect": "0.4.0",

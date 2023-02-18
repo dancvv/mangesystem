@@ -1,7 +1,7 @@
 <template>
   <div class="register">
     <el-form ref="registerForm" :model="registerForm" :rules="registerRules" class="register-form">
-      <h3 class="title">若依后台管理系统</h3>
+      <h3 class="title">{{ sysInfo.systemName }}</h3>
       <el-form-item prop="username">
         <el-input v-model="registerForm.username" type="text" auto-complete="off" placeholder="账号">
           <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
@@ -41,13 +41,14 @@
     </el-form>
     <!--  底部  -->
     <div class="el-register-footer">
-      <span>Copyright © 2018-2022 ruoyi.vip All Rights Reserved.</span>
+      <span>{{ sysInfo.copyRights }}</span>
     </div>
   </div>
 </template>
 
 <script>
 import { getCodeImg, register } from "@/api/login";
+import { sysInfo } from '@/plugins/globalInfo'
 
 export default {
   name: "Register",
@@ -84,10 +85,12 @@ export default {
         code: [{ required: true, trigger: "change", message: "请输入验证码" }]
       },
       loading: false,
-      captchaEnabled: true
+      captchaEnabled: true,
+      sysInfo: {}
     };
   },
   created() {
+    this.sysInfo = sysInfo
     this.getCode();
   },
   methods: {
@@ -186,7 +189,7 @@ export default {
   bottom: 0;
   width: 100%;
   text-align: center;
-  color: #fff;
+  color: #707070;
   font-family: Arial;
   font-size: 12px;
   letter-spacing: 1px;

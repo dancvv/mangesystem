@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
-      <h3 class="title">无人机综合治理系统</h3>
+      <h3 class="title">{{ sysInfo.systemName }}</h3>
       <el-form-item prop="username">
         <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="账号">
           <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
@@ -36,7 +36,7 @@
     </el-form>
     <!--  底部  -->
     <div class="el-login-footer">
-      <span>Copyright © 2018-2022 ruoyi.vip All Rights Reserved.</span>
+      <span>{{ sysInfo.copyRights }}</span>
     </div>
   </div>
 </template>
@@ -45,6 +45,7 @@
 import { getCodeImg } from "@/api/login";
 import Cookies from "js-cookie";
 import { encrypt, decrypt } from '@/utils/jsencrypt'
+import { sysInfo } from '@/plugins/globalInfo'
 
 export default {
   name: "Login",
@@ -71,8 +72,9 @@ export default {
       // 验证码开关
       captchaEnabled: true,
       // 注册开关
-      register: false,
-      redirect: undefined
+      register: true,
+      redirect: undefined,
+      sysInfo: {}
     };
   },
   watch: {
@@ -84,6 +86,7 @@ export default {
     }
   },
   created() {
+    this.sysInfo = sysInfo;
     this.getCode();
     this.getCookie();
   },
@@ -196,7 +199,7 @@ export default {
   bottom: 0;
   width: 100%;
   text-align: center;
-  color: #fff;
+  color: #707070;
   font-family: Arial;
   font-size: 12px;
   letter-spacing: 1px;

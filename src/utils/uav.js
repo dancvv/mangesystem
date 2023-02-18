@@ -2,7 +2,7 @@
 
 /**
  * 通用js方法封装处理
- * Copyright (c) 2019 ruoyi
+ * 
  */
 
 // 日期格式化
@@ -88,7 +88,7 @@ export function selectDictLabel(datas, value) {
 
 // 回显数据字典（字符串、数组）
 export function selectDictLabels(datas, value, separator) {
-  if (value === undefined || value.length ===0) {
+  if (value === undefined || value.length === 0) {
     return "";
   }
   if (Array.isArray(value)) {
