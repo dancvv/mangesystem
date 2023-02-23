@@ -9,8 +9,11 @@
         <el-input v-model="queryParams.droneExecuteNumber" placeholder="请输入任务执行编号" clearable
           @keyup.enter.native="handleQuery" />
       </el-form-item>
-      <el-form-item label="路线列表" prop="missionList">
-        <el-input v-model="queryParams.missionList" placeholder="请输入路线列表" clearable @keyup.enter.native="handleQuery" />
+      <el-form-item label="任务顺序" prop="numberInlist">
+        <el-input v-model="queryParams.numberInlist" placeholder="请输入任务顺序" clearable @keyup.enter.native="handleQuery" />
+      </el-form-item>
+      <el-form-item label="是否执行" prop="isExecute">
+        <el-input v-model="queryParams.isExecute" placeholder="请输入是否执行" clearable @keyup.enter.native="handleQuery" />
       </el-form-item>
       <el-form-item label="时间" prop="dateTime">
         <el-date-picker clearable v-model="queryParams.dateTime" type="date" value-format="yyyy-MM-dd"
@@ -45,10 +48,11 @@
 
     <el-table v-loading="loading" :data="listList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="编号" align="center" prop="id" show-overflow-tooltip />
+      <el-table-column label="id值" align="center" prop="id" show-overflow-tooltip />
       <el-table-column label="执行无人机编号" align="center" prop="assignmentDrone" />
       <el-table-column label="任务执行编号" align="center" prop="droneExecuteNumber" />
-      <el-table-column label="路线列表" align="center" prop="missionList" />
+      <el-table-column label="任务顺序" align="center" prop="numberInlist" />
+      <el-table-column label="是否执行" align="center" prop="isExecute" />
       <el-table-column label="时间" align="center" prop="dateTime" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.dateTime, '{y}-{m}-{d} {h}:{m}:{s}') }}</span>
@@ -76,8 +80,11 @@
         <el-form-item label="任务执行编号" prop="droneExecuteNumber">
           <el-input v-model="form.droneExecuteNumber" placeholder="请输入任务执行编号" />
         </el-form-item>
-        <el-form-item label="路线列表" prop="missionList">
-          <el-input v-model="form.missionList" placeholder="请输入路线列表" />
+        <el-form-item label="任务顺序" prop="numberInlist">
+          <el-input v-model="form.numberInlist" placeholder="请输入任务顺序" />
+        </el-form-item>
+        <el-form-item label="是否执行" prop="isExecute">
+          <el-input v-model="form.isExecute" placeholder="请输入是否执行" />
         </el-form-item>
         <el-form-item label="时间" prop="dateTime">
           <el-date-picker clearable v-model="form.dateTime" type="date" value-format="yyyy-MM-dd" placeholder="请选择时间">
@@ -123,7 +130,8 @@ export default {
         pageSize: 10,
         assignmentDrone: null,
         droneExecuteNumber: null,
-        missionList: null,
+        numberInlist: null,
+        isExecute: null,
         dateTime: null
       },
       // 表单参数
@@ -160,7 +168,8 @@ export default {
         id: null,
         assignmentDrone: null,
         droneExecuteNumber: null,
-        missionList: null,
+        numberInlist: null,
+        isExecute: null,
         dateTime: null
       };
       this.resetForm("form");
