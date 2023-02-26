@@ -13,10 +13,6 @@
       <el-form-item label="纬度" prop="lng">
         <el-input v-model="queryParams.lng" placeholder="请输入纬度" clearable @keyup.enter.native="handleQuery" />
       </el-form-item>
-      <el-form-item label="任务耗能" prop="energyRequirement">
-        <el-input v-model="queryParams.energyRequirement" placeholder="请输入任务耗能" clearable
-          @keyup.enter.native="handleQuery" />
-      </el-form-item>
       <el-form-item label="时间" prop="dateTime">
         <el-date-picker clearable v-model="queryParams.dateTime" type="date" value-format="yyyy-MM-dd"
           placeholder="请选择时间">
@@ -58,10 +54,9 @@
       <el-table-column label="任务优先级" align="center" prop="taskPriority" />
       <el-table-column label="经度" align="center" prop="lat" />
       <el-table-column label="纬度" align="center" prop="lng" />
-      <el-table-column label="任务耗能" align="center" prop="energyRequirement" />
       <el-table-column label="时间" align="center" prop="dateTime" width="180">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.dateTime, '{y}-{m}-{d}') }}</span>
+          <span>{{ parseTime(scope.row.dateTime, '{y}-{m}-{d} {h}:{m}:{s}') }}</span>
         </template>
       </el-table-column>
       <el-table-column label="任务是否执行" align="center" prop="isExecute" />
@@ -92,9 +87,6 @@
         </el-form-item>
         <el-form-item label="纬度" prop="lng">
           <el-input v-model="form.lng" placeholder="请输入纬度" />
-        </el-form-item>
-        <el-form-item label="任务耗能" prop="energyRequirement">
-          <el-input v-model="form.energyRequirement" placeholder="请输入任务耗能" />
         </el-form-item>
         <el-form-item label="时间" prop="dateTime">
           <el-date-picker clearable v-model="form.dateTime" type="date" value-format="yyyy-MM-dd" placeholder="请选择时间">
@@ -145,7 +137,6 @@ export default {
         taskPriority: null,
         lat: null,
         lng: null,
-        energyRequirement: null,
         dateTime: null,
         isExecute: null
       },
@@ -185,7 +176,6 @@ export default {
         taskPriority: null,
         lat: null,
         lng: null,
-        energyRequirement: null,
         dateTime: null,
         isExecute: null
       };

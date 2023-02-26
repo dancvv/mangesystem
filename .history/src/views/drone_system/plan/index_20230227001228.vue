@@ -53,7 +53,7 @@
 
     <el-table v-loading="loading" :data="planList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="编号" align="center" prop="id" show-overflow-tooltip />
+      <el-table-column label="编号" align="center" prop="id" />
       <el-table-column label="任务编号" align="center" prop="taskNumber" />
       <el-table-column label="任务优先级" align="center" prop="taskPriority" />
       <el-table-column label="经度" align="center" prop="lat" />
