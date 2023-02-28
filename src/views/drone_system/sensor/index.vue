@@ -96,7 +96,10 @@
 
     <!-- 添加或修改传感器管理对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="120px">
+        <el-form-item label="传感器类型" prop="sensorType">
+          <el-input v-model="form.sensorParam" placeholder="请输入传感器类型" />
+        </el-form-item>
         <el-form-item label="传感器参数" prop="sensorParam">
           <el-input v-model="form.sensorParam" placeholder="请输入传感器参数" />
         </el-form-item>
@@ -145,6 +148,14 @@ export default {
       form: {},
       // 表单校验
       rules: {
+        sensorType: [
+          { required: true, message: "请输入传感器类型", trigger: "blur" },
+          { min: 0, max: 50, message: "长度在 0 到 50 个字符", trigger: "blur" }
+        ],
+        sensorParam: [
+          { required: true, message: "请输入传感器参数", trigger: "blur" },
+          { min: 0, max: 50, message: "长度在 0 到 50 个字符", trigger: "blur" }
+        ]
       }
     };
   },

@@ -73,7 +73,7 @@
 
     <!-- 添加或修改任务执行列表对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="120px">
         <el-form-item label="执行无人机编号" prop="assignmentDrone">
           <el-input v-model="form.assignmentDrone" placeholder="请输入执行无人机编号" />
         </el-form-item>
@@ -87,7 +87,7 @@
           <el-input v-model="form.isExecute" placeholder="请输入是否执行" />
         </el-form-item>
         <el-form-item label="时间" prop="dateTime">
-          <el-date-picker clearable v-model="form.dateTime" type="date" value-format="yyyy-MM-dd" placeholder="请选择时间">
+          <el-date-picker clearable v-model="form.dateTime" type="datetime" value-format="yyyy-MM-dd HH:mm:ss" placeholder="请选择时间">
           </el-date-picker>
         </el-form-item>
       </el-form>
@@ -141,6 +141,15 @@ export default {
         assignmentDrone: [
           { required: true, message: "执行无人机编号不能为空", trigger: "blur" }
         ],
+        droneExecuteNumber: [
+          { required: true, message: "任务执行编号不能为空", trigger: "blur" }
+        ],
+        isExecute: [
+          { required: true, message: "是否执行不能为空", trigger: "blur" }
+        ],
+        dateTime: [
+          { required: true, message: "时间不能为空", trigger: "blur" }
+        ]
       }
     };
   },

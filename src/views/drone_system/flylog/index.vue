@@ -83,7 +83,7 @@
 
     <!-- 添加或修改飞行日志对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="120px">
         <el-form-item label="无人机编号" prop="droneNumber">
           <el-input v-model="form.droneNumber" placeholder="请输入无人机编号" />
         </el-form-item>
@@ -106,7 +106,7 @@
           <el-input v-model="form.isArmed" placeholder="请输入是否上电" />
         </el-form-item>
         <el-form-item label="执行时间" prop="datetime">
-          <el-date-picker clearable v-model="form.datetime" type="date" value-format="yyyy-MM-dd" placeholder="请选择执行时间">
+          <el-date-picker clearable v-model="form.datetime" type="datetime" value-format="yyyy-MM-dd HH:mm:ss" placeholder="请选择执行时间">
           </el-date-picker>
         </el-form-item>
       </el-form>
@@ -163,6 +163,27 @@ export default {
         droneNumber: [
           { required: true, message: "无人机编号不能为空", trigger: "blur" }
         ],
+        inAir: [
+          { required: true, message: "是否飞行不能为空", trigger: "blur" }
+        ],
+        lat: [
+          { required: true, message: "经度不能为空", trigger: "blur" }
+        ],
+        lng: [
+          { required: true, message: "纬度不能为空", trigger: "blur" }
+        ],
+        battery: [
+          { required: true, message: "电池容量不能为空", trigger: "blur" }
+        ],
+        flightMode: [
+          { required: true, message: "飞行模式不能为空", trigger: "blur" }
+        ],
+        isArmed: [
+          { required: true, message: "是否上电不能为空", trigger: "blur" }
+        ],
+        datetime: [
+          { required: true, message: "执行时间不能为空", trigger: "blur" }
+        ]
       }
     };
   },

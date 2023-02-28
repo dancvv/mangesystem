@@ -7,11 +7,11 @@
       <el-form-item label="轴距" prop="droneWheelbase">
         <el-input v-model="queryParams.droneWheelbase" placeholder="请输入轴距" clearable @keyup.enter.native="handleQuery" />
       </el-form-item>
-      <el-form-item label="最大起飞重量" prop="takeoffWeight">
+      <el-form-item label="最大起飞重量kg" prop="takeoffWeight">
         <el-input v-model="queryParams.takeoffWeight" placeholder="请输入最大起飞重量" clearable
           @keyup.enter.native="handleQuery" />
       </el-form-item>
-      <el-form-item label="最大任务载荷" prop="missionWeight">
+      <el-form-item label="最大任务载荷kg" prop="missionWeight">
         <el-input v-model="queryParams.missionWeight" placeholder="请输入最大任务载荷" clearable
           @keyup.enter.native="handleQuery" />
       </el-form-item>
@@ -63,8 +63,8 @@
       <el-table-column label="无人机编号" align="center" prop="droneNumer" />
       <el-table-column label="无人机类型" align="center" prop="droneType" />
       <el-table-column label="轴距" align="center" prop="droneWheelbase" />
-      <el-table-column label="最大起飞重量" align="center" prop="takeoffWeight" />
-      <el-table-column label="最大任务载荷" align="center" prop="missionWeight" />
+      <el-table-column label="最大起飞重量kg" align="center" prop="takeoffWeight" />
+      <el-table-column label="最大任务载荷kg" align="center" prop="missionWeight" />
       <el-table-column label="最大飞行速度m/s" align="center" prop="flySpeed" />
       <el-table-column label="最大飞行高度m" align="center" prop="flyHeight" />
       <el-table-column label="是否损坏" align="center" prop="droneStatus" />
@@ -176,6 +176,30 @@ export default {
       rules: {
         droneNumer: [
           { required: true, message: "无人机编号不能为空", trigger: "blur" }
+        ],
+        droneType: [
+          { required: true, message: "无人机类型不能为空", trigger: "blur" }
+        ],
+        droneWheelbase: [
+          { required: true, message: "轴距不能为空", trigger: "blur" }
+        ],
+        takeoffWeight: [
+          { required: true, message: "最大起飞重量不能为空", trigger: "blur" }
+        ],
+        missionWeight: [
+          { required: true, message: "最大任务载荷不能为空", trigger: "blur" }
+        ],
+        flySpeed: [
+          { required: true, message: "最大飞行速度m/s不能为空", trigger: "blur" }
+        ],
+        flyHeight: [
+          { required: true, message: "最大飞行高度m不能为空", trigger: "blur" }
+        ],
+        droneStatus: [
+          { required: true, message: "是否损坏不能为空", trigger: "blur" }
+        ],
+        droneBattery: [
+          { required: true, message: "电池mah不能为空", trigger: "blur" }
         ],
       }
     };

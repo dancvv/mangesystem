@@ -61,7 +61,7 @@
       <el-table-column label="任务耗能" align="center" prop="energyRequirement" />
       <el-table-column label="时间" align="center" prop="dateTime" width="180">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.dateTime, '{y}-{m}-{d}') }}</span>
+          <span>{{ parseTime(scope.row.dateTime, '{y}-{m}-{d} {h}:{m}:{s}') }}</span>
         </template>
       </el-table-column>
       <el-table-column label="任务是否执行" align="center" prop="isExecute" />
@@ -80,7 +80,7 @@
 
     <!-- 添加或修改任务管理对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="120px">
         <el-form-item label="任务编号" prop="taskNumber">
           <el-input v-model="form.taskNumber" placeholder="请输入任务编号" />
         </el-form-item>
@@ -97,7 +97,7 @@
           <el-input v-model="form.energyRequirement" placeholder="请输入任务耗能" />
         </el-form-item>
         <el-form-item label="时间" prop="dateTime">
-          <el-date-picker clearable v-model="form.dateTime" type="date" value-format="yyyy-MM-dd" placeholder="请选择时间">
+          <el-date-picker clearable v-model="form.dateTime" type="datetime" value-format="yyyy-MM-dd HH:mm:ss" placeholder="请选择时间">
           </el-date-picker>
         </el-form-item>
         <el-form-item label="任务是否执行" prop="isExecute">
@@ -155,6 +155,18 @@ export default {
       rules: {
         taskNumber: [
           { required: true, message: "任务编号不能为空", trigger: "blur" }
+        ],
+        taskPriority: [
+          { required: true, message: "任务优先级不能为空", trigger: "blur" }
+        ],
+        lat: [
+          { required: true, message: "经度不能为空", trigger: "blur" }
+        ],
+        lng: [
+          { required: true, message: "纬度不能为空", trigger: "blur" }
+        ],
+        energyRequirement: [
+          { required: true, message: "任务耗能不能为空", trigger: "blur" }
         ],
       }
     };

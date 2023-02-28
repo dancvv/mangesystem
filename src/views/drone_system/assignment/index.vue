@@ -69,7 +69,7 @@
 
     <!-- 添加或修改任务分配对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="120px">
         <el-form-item label="任务编号" prop="taskNumber">
           <el-input v-model="form.taskNumber" placeholder="请输入任务编号" />
         </el-form-item>
@@ -80,7 +80,7 @@
           <el-input v-model="form.realtimePriority" placeholder="请输入实时优先级" />
         </el-form-item>
         <el-form-item label="时间" prop="dateTime">
-          <el-date-picker clearable v-model="form.dateTime" type="date" value-format="yyyy-MM-dd" placeholder="请选择时间">
+          <el-date-picker clearable v-model="form.dateTime" type="datetime" value-format="yyyy-MM-dd HH-mm-ss" placeholder="请选择时间">
           </el-date-picker>
         </el-form-item>
       </el-form>
@@ -130,6 +130,15 @@ export default {
       form: {},
       // 表单校验
       rules: {
+        taskNumber: [
+          { required: true, message: "任务编号不能为空", trigger: "blur" }
+        ],
+        assignmentDrone: [
+          { required: true, message: "任务执行无人机不能为空", trigger: "blur" }
+        ],
+        dateTime: [
+          { required: true, message: "时间不能为空", trigger: "blur" }
+        ]
       }
     };
   },
