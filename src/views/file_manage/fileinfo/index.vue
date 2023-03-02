@@ -128,7 +128,6 @@
           <el-upload
             ref="upload"
             :limit="1"
-            accept=".jpg, .png"
             :action="upload.url"
             :headers="upload.headers"
             :file-list="upload.fileList"
@@ -137,7 +136,7 @@
             :auto-upload="false">
             <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
             <el-button style="margin-left: 10px;" size="small" type="success" :loading="upload.isUploading" @click="submitUpload">上传到服务器</el-button>
-            <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+            <div slot="tip" class="el-upload__tip">请勿上传大文件占用内存</div>
           </el-upload>
 
           <!-- <el-input v-model="form.fileName" placeholder="请输入文件名称" /> -->
