@@ -73,6 +73,8 @@
       <el-table-column label="制造商" align="center" prop="droneManuf" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
+          <el-button size="mini" type="text" icon="el-icon-refresh-left" @click="handleSoftware(scope.row)"
+            v-hasPermi="['drone_system:info:edit']">固件更新</el-button>
           <el-button size="mini" type="text" icon="el-icon-edit" @click="handleUpdate(scope.row)"
             v-hasPermi="['drone_system:info:edit']">修改</el-button>
           <el-button size="mini" type="text" icon="el-icon-delete" @click="handleDelete(scope.row)"
@@ -84,6 +86,7 @@
     <pagination v-show="total > 0" :total="total" :page.sync="queryParams.pageNum" :limit.sync="queryParams.pageSize"
       @pagination="getList" />
 
+    <!-- 是否执行固件更新的操作 -->
     <!-- 添加或修改无人机管理对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="150px">
@@ -307,7 +310,29 @@ export default {
       this.download('drone_system/info/export', {
         ...this.queryParams
       }, `info_${new Date().getTime()}.xlsx`)
-    }
+    },
+    /** 固件更新按钮操作 */
+    handleSoftware(row) {
+      this.openBox(row)
+    },
+    /** 打开消息弹窗 */
+    openBox(row) {
+      this.$confirm('是否执行固件更新的操作', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$message({
+            type: 'success',
+            message: '固件更新成功'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消固件更新'
+          });
+        });  
+    },
   }
 };
 </script>
