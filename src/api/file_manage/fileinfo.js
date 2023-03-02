@@ -42,3 +42,14 @@ export function delFileinfo(fileId) {
     method: 'delete'
   })
 }
+
+// 删除文件具体
+export function delFileinfoDetail(filePath) {
+  return request({
+    url: '/file/delete',
+    method: 'delete',
+    params: {
+      filePath:filePath
+    }
+  })
+}

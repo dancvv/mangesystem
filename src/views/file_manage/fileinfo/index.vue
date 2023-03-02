@@ -163,7 +163,7 @@
 </template>
 
 <script>
-import { listFileinfo, getFileinfo, delFileinfo, addFileinfo, updateFileinfo } from "@/api/file_manage/fileinfo";
+import { listFileinfo, getFileinfo, delFileinfo, delFileinfoDetail, addFileinfo, updateFileinfo } from "@/api/file_manage/fileinfo";
 import { getToken } from "@/utils/auth";
 
 export default {
@@ -299,7 +299,14 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       const fileIds = row.fileId || this.ids;
+      let filePath = row.filePath
       this.$modal.confirm('是否确认删除文件信息编号为"' + fileIds + '"的数据项？').then(function() {
+        try {
+          delFileinfoDetail(filePath);
+        } catch (error) {
+          // 终止操作，并发出错误提示
+          throw new Error('删除失败');
+        }
         return delFileinfo(fileIds);
       }).then(() => {
         this.getList();
@@ -324,7 +331,6 @@ export default {
     // 文件上传成功处理
     handleFileSuccess(response, file, fileList) {
       this.upload.isUploading = false;
-      console.log(response)
       this.form.filePath = response.data.url;
       this.form.fileName = response.data.name;
       addFileinfo(this.form).then(response => {
