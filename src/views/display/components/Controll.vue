@@ -1,7 +1,9 @@
 <template>
   <div id="bar" :style="size">
     <div class="dragRectTop"></div>
-
+    
+    <!-- 让div里面的文字居中 -->
+    <div style="text-align: center;margin-bottom:5px">无人机控制</div>
     <div>
       <Select></Select>
     </div>

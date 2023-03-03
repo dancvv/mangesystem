@@ -5,6 +5,7 @@
 
     <!-- <e-charts :size="size" :options="options" /> -->
 
+    <div style="text-align: center;margin-bottom:5px">无人机实时信息</div>
     <SelectForInfo></SelectForInfo>
     <!-- <hr>
     经度,,纬度 -->
