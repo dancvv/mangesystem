@@ -14,13 +14,13 @@
         <BrokenLine></BrokenLine>
       </div>
 
-       <div class="right">
+      <div class="right">
         <!-- 右上控制 -->
         <Controll></Controll>
         <!-- <broken-line></broken-line> -->
         <!-- 右下任务列表 -->
         <Missions></Missions>
-      </div> 
+      </div>
     </div>
   </div>
 </template>
@@ -55,8 +55,8 @@ export default {
       this.nowTime = this.getNowTime()
     }, 1000)
   },
-  
-    
+
+
   methods: {
 
   }
@@ -65,10 +65,11 @@ export default {
 
 <style>
 /* 实现响应式 */
-html{
+html {
   /* 将屏幕的宽度设置为24rem,从而自动实现将内容按照屏幕的大小进行缩放 */
   /* 屏幕宽高比16:9 */
-  font-size: calc(100vw / 28); /* 自适应占屏幕比例 100vm 是分子 ,28 是分母 */
+  font-size: calc(100vw / 28);
+  /* 自适应占屏幕比例 100vm 是分子 ,28 是分母 */
 }
 
 /* 声明字体 */
@@ -78,15 +79,15 @@ html{
 } */
 
 
-body{
+body {
   /* width: 100vw; */
   /* height: calc( 100vw / 16 * 9 ); */
   font-size: 12px;
   /* background-size: cover; */
   /* background-repeat: no-repeat; */
-} 
+}
 
-#app{
+#app {
   /* width: 100vw; */
   /* height: 100%; */
   display: flex;
@@ -94,33 +95,38 @@ body{
 
 }
 
-.charts{
- flex: 1;
- width: 86vw;
- padding: 0.2rem;
- display: flex;
+.charts {
+  flex: 1;
+  width: 100%;
+  padding: 0px;
+  display: flex;
 }
 
-.charts .left{
-  flex: 2;
-  display: flex;
+.charts .left {
+  /*flex: 2;
+  display: flex;*/
+  width: 20%;
   padding: 0.1rem;
   flex-direction: column;
   justify-content: space-evenly;
 }
-.charts .mid{
+
+.charts .mid {
   padding: 0.1rem;
 
-  flex: 6;
+  flex: 4;
 }
-.charts .right{
-  flex: 2;
-  display: flex;
+
+.charts .right {
+  /*flex: 2;
+  display: flex;*/
+  width: 20%;
   padding: 0.1rem;
 
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
+
 /* 
 .mid .title{
   margin: 0.1rem 0.1rem 2rem 0.1rem;
@@ -143,7 +149,7 @@ body{
   position: relative;
 } */
 
-.borderTop{
+.borderTop {
   position: absolute;
   top: 0;
   left: 0;
@@ -151,7 +157,7 @@ body{
   height: 0.1rem;
 }
 
-.borderTop::before{
+.borderTop::before {
   content: "";
   position: absolute;
   top: 0;
@@ -162,14 +168,15 @@ body{
   border-top: 2px solid skyblue;
 }
 
-.borderbottom{
+.borderbottom {
   position: absolute;
   bottom: 0;
   right: 0;
   width: 100%;
   height: 0.1rem;
 }
-.borderbottom::after{
+
+.borderbottom::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -179,6 +186,7 @@ body{
   border-bottom: 2px solid skyblue;
   border-right: 2px solid skyblue;
 }
+
 /* 
 .mid .title .number span:nth-of-type(1){
   width: 50%;
@@ -215,6 +223,4 @@ body{
 .mid .title .desc span:nth-child(2){
   width: 50%;
   text-align: center;
-} */
-
-</style>
+} */</style>

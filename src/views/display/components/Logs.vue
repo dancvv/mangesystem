@@ -5,7 +5,7 @@
 
     <!-- <e-charts :size="size" :options="options" /> -->
 
-    <div style="text-align: center;margin-bottom:5px">无人机实时信息</div>
+    <div style="text-align:center; font-size:16px; margin-top:5px; margin-bottom:5px">无人机实时信息</div>
     <SelectForInfo></SelectForInfo>
     <!-- <hr>
     经度,,纬度 -->
@@ -27,12 +27,13 @@
     <!-- 状态 -->
     <!-- <hr> -->
     <div class="speedandbattery" :style="size2">
-      <div class="left">
+      <div class="left" style="color:white; font-size:14px">
         飞速
-        <e-charts :size="size2" :options="options" />
+        <e-charts :size="size2" :options="options" style="margin-top:-15px" />
       </div>
-      <div class="right">
+      <div class="right" style="color:white; font-size:14px">
         电池
+        <e-charts :size="size2" :options="batteryOption" style="margin-top:-15px" />
         <!-- <dv-percent-pond :style="sizebattery" :config="config" /> -->
       </div>
 
@@ -48,6 +49,7 @@
 </template>
 
 <script>
+import { color } from 'echarts';
 import ECharts from './ECharts'
 import SelectForInfo from './SelectForInfo.vue';
 // import * as  echarts from 'echarts';
@@ -60,9 +62,9 @@ export default {
   // el: '#pie',
   data: function () {
     return {
-      lat: '',
-      lon: 0,
-      high: 0,
+      lat: 39.086084235333566,
+      lon: 121.80807899683717,
+      high: 9.8,
       state: 'arming',
       // battery: 0,
       // speed: 0,
@@ -90,13 +92,15 @@ export default {
             // 进度蓝色半圈
             progress: {
               show: true,
-              width: 10
+              width: 10,
+              color: "green"
             },
             // 白半圈
             axisLine: {
               lineStyle: {
                 width: 10
-              }
+              },
+              color: "#999"
             },
             axisTick: {
               show: false
@@ -129,9 +133,76 @@ export default {
             // 实际数字
             detail: {
               valueAnimation: true,
-              fontSize: 30,
+              fontSize: 15,
               offsetCenter: [0, '70%'],
+              formatter: '{value}m/s',
               color: '#999'
+            },
+            data: [
+              {
+                value: 8 
+              }
+            ]
+          }
+        ]
+      },
+      batteryOption: {
+        series: [
+          {
+            type: 'gauge',
+            progress: {
+              show: true,
+              width: 10
+            },
+            axisLine: {
+              lineStyle: {
+                width: 10,
+                color: [
+                  [0.1, '#FF5722'], // 颜色渐变结束值及对应颜色
+                  [0.7, '#FFC107'], // 颜色渐变中间值及对应颜色
+                  [1, '#999'], // 颜色渐变起始值及对应颜色
+                ]
+              }
+            },
+            progress: {
+              show: true,
+              width: 10,
+              itemStyle: {
+                color: '#FF5722' // 进度条颜色
+              }
+            },
+            axisTick: {
+              show: false
+            },
+            splitLine: {
+              length: 5,
+              lineStyle: {
+                width: 0,
+                color: '#FFC107'
+              }
+            },
+            axisLabel: {
+              distance: 5,
+              color: '#FFC107',
+              fontSize: 0
+            },
+            anchor: {
+              itemStyle: {
+                color: '#FF5722' // 指针颜色
+              }
+            },
+            detail: {
+              color: '#FF5722' // 实际数字颜色
+            },
+            title: {
+              show: false
+            },
+            detail: {
+              valueAnimation: true,
+              fontSize: 20,
+              formatter: '{value}%',
+              offsetCenter: [0, '70%'],
+              color: '#FFC107'
             },
             data: [
               {
@@ -259,6 +330,8 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   background-color: rgb(63, 65, 179);
+  color: white;
+  font-size: 14px;
   position: relative;
   left: 3%;
   border-radius: 6px;
@@ -338,4 +411,5 @@ export default {
   position: absolute;
   right: 0;
   bottom: 0;
-}</style>
+}
+</style>

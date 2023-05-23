@@ -4,10 +4,10 @@
       <el-form-item label="任务编号" prop="taskNumber">
         <el-input v-model="queryParams.taskNumber" placeholder="请输入任务编号" clearable @keyup.enter.native="handleQuery" />
       </el-form-item>
-      <el-form-item label="任务执行无人机" prop="assignmentDrone">
+      <!-- <el-form-item label="任务执行无人机" prop="assignmentDrone">
         <el-input v-model="queryParams.assignmentDrone" placeholder="请输入任务执行无人机" clearable
           @keyup.enter.native="handleQuery" />
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item label="实时优先级" prop="realtimePriority">
         <el-input v-model="queryParams.realtimePriority" placeholder="请输入实时优先级" clearable
           @keyup.enter.native="handleQuery" />
@@ -40,18 +40,27 @@
         <el-button type="warning" plain icon="el-icon-download" size="mini" @click="handleExport"
           v-hasPermi="['drone_system:assignment:export']">导出</el-button>
       </el-col>
+      <el-col :span="1.5">
+        <el-button type="primary" plain icon="el-icon-discover" size="mini" @click="routePlan">一键任务分配</el-button>
+        <el-button type="primary" plain icon="el-icon-key" size="mini" @click="routeExecute">任务执行</el-button>
+      </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
     <el-table v-loading="loading" :data="assignmentList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="编号" align="center" prop="id" show-overflow-tooltip />
+      <!-- <el-table-column label="编号" align="center" prop="id" show-overflow-tooltip /> -->
       <el-table-column label="任务编号" align="center" prop="taskNumber" />
-      <el-table-column label="任务执行无人机" align="center" prop="assignmentDrone" />
+      <el-table-column label="任务执行无人机" align="center" >
+        <template slot-scope="scope">
+          <el-tag type="primary" v-if="scope.row.assignmentDrone !== ''">{{ scope.row.assignmentDrone }}</el-tag>
+          <el-tag type="warning" v-if="scope.row.assignmentDrone === ''">待分配</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column label="实时优先级" align="center" prop="realtimePriority" />
       <el-table-column label="时间" align="center" prop="dateTime" width="180">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.dateTime, '{y}-{m}-{d} {h}:{m}:{s}') }}</span>
+          <span>{{ parseTime(scope.row.dateTime, '{y}-{m}-{d} {h}:{i}:{s}') }}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
@@ -73,9 +82,9 @@
         <el-form-item label="任务编号" prop="taskNumber">
           <el-input v-model="form.taskNumber" placeholder="请输入任务编号" />
         </el-form-item>
-        <el-form-item label="任务执行无人机" prop="assignmentDrone">
+        <!-- <el-form-item label="任务执行无人机" prop="assignmentDrone">
           <el-input v-model="form.assignmentDrone" placeholder="请输入任务执行无人机" />
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="实时优先级" prop="realtimePriority">
           <el-input v-model="form.realtimePriority" placeholder="请输入实时优先级" />
         </el-form-item>
@@ -238,6 +247,26 @@ export default {
       this.download('drone_system/assignment/export', {
         ...this.queryParams
       }, `assignment_${new Date().getTime()}.xlsx`)
+    },
+
+    routePlan() {
+      this.$confirm('本操作将自动进行任务分配与路线规划，是否继续？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$modal.msgSuccess("任务分配与路线规划成功");
+      }).catch(() => { });
+    },
+
+    routeExecute() {
+      this.$confirm('本操作将派遣无人机执行分配任务，是否继续？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$modal.msgSuccess("派遣成功");
+      }).catch(() => { });
     }
   }
 };

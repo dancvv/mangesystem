@@ -2,9 +2,11 @@
   <div id="bar" :style="size">
     <div class="dragRectTop"></div>
 
-    摄像头展示
+    <div style="font-size:16px; margin-top:5px; margin-bottom:5px">摄像头展示</div>
     <div class="earth">
-      <e-charts :size="size" :options="options" />
+      <!-- <e-charts :size="size" :options="options" /> -->
+      <img :src="require('@/assets/images/img_3669.png')" width="100%" height="100%" alt="Image">
+      <!-- <img src="" alt=""> -->
     </div>
 
     <div class="dragRectBottom"></div>
@@ -15,6 +17,7 @@
 import ECharts from './ECharts'
 import 'echarts-gl'
 
+// import imgUrl from "@/assets/images/img_3669.JPG"
 var ROOT_PATH =
   'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples';
 

@@ -4,14 +4,14 @@
       <!--部门数据-->
       <el-col :span="4" :xs="24">
         <div class="head-container">
-          <el-input
+          <!-- <el-input
             v-model="deptName"
             placeholder="请输入部门名称"
             clearable
             size="small"
             prefix-icon="el-icon-search"
             style="margin-bottom: 20px"
-          />
+          /> -->
         </div>
         <div class="head-container">
           <el-tree

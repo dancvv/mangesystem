@@ -1,9 +1,10 @@
 <template>
-  <div id="bar" :style="size">
+  <!-- <div id="bar" :style="size"> -->
+  <div id="bar" >
     <div class="dragRectTop"></div>
     
     <!-- 让div里面的文字居中 -->
-    <div style="text-align: center;margin-bottom:5px">无人机控制</div>
+    <div style="text-align:center; font-size:16px; margin-top:5px; margin-bottom:5px">无人机控制</div>
     <div>
       <Select></Select>
     </div>
@@ -39,7 +40,7 @@
     <!-- <div class="rectangle">
       
     </div> -->
-    <div class="dragRectBottom"></div>
+    <!-- <div class="dragRectBottom"></div> -->
   </div>
 </template>
 
@@ -57,7 +58,7 @@ export default {
       num: [1, 2, 3, 4],
       size: {
         width: '100%',
-        height: '5rem'
+        height: '40%'
       }
     }
   },
@@ -126,7 +127,7 @@ export default {
   /* display: flex; */
   /* flex-direction: column; */
   flex: 0.5;
-
+  margin-top: 5px;
   width: 50%;
   /* height: 12%; */
   /* display: flex; */
@@ -161,6 +162,7 @@ export default {
   /* display: flex; */
   /* flex-direction: column; */
   /* flex: 0.2; */
+  margin-top: 5px;
   height: 95%;
   width: 100%;
   /* height: 12%; */

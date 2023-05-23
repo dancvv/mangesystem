@@ -60,7 +60,8 @@
       <el-table-column label="是否飞行" align="center" prop="inAir" />
       <el-table-column label="经度" align="center" prop="lat" />
       <el-table-column label="纬度" align="center" prop="lng" />
-      <el-table-column label="电池容量" align="center" prop="battery" />
+      <!-- <el-table-column label="电池容量" align="center" prop="battery" /> -->
+      <el-table-column label="电池容量" align="center" :formatter="formatterBatt" />
       <el-table-column label="飞行模式" align="center" prop="flightMode" />
       <el-table-column label="是否上电" align="center" prop="isArmed" />
       <el-table-column label="执行时间" align="center" prop="datetime" width="180">
@@ -191,11 +192,17 @@ export default {
     this.getList();
   },
   methods: {
+    formatterBatt(row) {
+      let res = row.battery * 100;
+      // return res.toFixed(2);
+      return row.battery.toFixed(3);
+    },
     /** 查询飞行日志列表 */
     getList() {
       this.loading = true;
       listFlylog(this.queryParams).then(response => {
         this.flylogList = response.rows;
+        console.log(response)
         this.total = response.total;
         this.loading = false;
       });

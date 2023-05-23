@@ -1,5 +1,5 @@
 // 配置的全局修改
 export const sysInfo = {
-    systemName: "多无人机任务实时处理系统",
-    copyRights: "Copyright © 2023 UAV LAB All Rights Reserved."
+    systemName: "无人机网络态势 & 任务处理系统",
+    copyRights: "Copyright © 2023 Wang All Rights Reserved."
 }

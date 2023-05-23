@@ -53,7 +53,7 @@
 
     <el-table v-loading="loading" :data="planList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="编号" align="center" prop="id" show-overflow-tooltip />
+      <!-- <el-table-column label="编号" align="kcenter" prop="id" show-overflow-tooltip /> -->
       <el-table-column label="任务编号" align="center" prop="taskNumber" />
       <el-table-column label="任务优先级" align="center" prop="taskPriority" />
       <el-table-column label="经度" align="center" prop="lat" />
@@ -64,7 +64,13 @@
           <span>{{ parseTime(scope.row.dateTime, '{y}-{m}-{d} {h}:{m}:{s}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="任务是否执行" align="center" prop="isExecute" />
+      <!-- <el-table-column label="任务是否执行" align="center" prop="isExecute"></el-table-column> -->
+      <el-table-column label="任务是否执行" align="center" >
+        <template slot-scope="scope">
+          <el-tag type="primary" v-if="scope.row.isExecute === 1">{{ scope.row.isExecute }}</el-tag>
+          <el-tag type="warning" v-if="scope.row.isExecute === 0">未完成</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button size="mini" type="text" icon="el-icon-edit" @click="handleUpdate(scope.row)"

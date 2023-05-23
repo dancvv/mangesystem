@@ -1,8 +1,9 @@
 <template>
     <div id="broken-line" :style="size">
+        <div style="text-align:center; font-size:16px; margin-top:5px; margin-bottom:5px">任务热点信息</div>
         <div class="dragRectTop"></div>
-        <e-charts :size="size2" :options="options" />
-        <div class="dragRectBottom"></div>
+        <e-charts :size="size2" style="margin-top: -48px;" :options="options" />
+        <!-- <div class="dragRectBottom"></div> -->
     </div>
 </template>
 
@@ -98,7 +99,6 @@ export default {
                 width: '100%',
                 height: '5rem',
                 position: 'relative',
-                top: '-5%'
             }
         }
     },

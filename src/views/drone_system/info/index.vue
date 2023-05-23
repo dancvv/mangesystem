@@ -1,24 +1,24 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="无人机编号" prop="droneNumer">
+      <el-form-item label="编号" prop="droneNumer">
         <el-input v-model="queryParams.droneNumer" placeholder="请输入无人机编号" clearable @keyup.enter.native="handleQuery" />
       </el-form-item>
       <el-form-item label="轴距" prop="droneWheelbase">
         <el-input v-model="queryParams.droneWheelbase" placeholder="请输入轴距" clearable @keyup.enter.native="handleQuery" />
       </el-form-item>
-      <el-form-item label="最大起飞重量kg" prop="takeoffWeight">
+      <el-form-item label="起飞重量kg" prop="takeoffWeight">
         <el-input v-model="queryParams.takeoffWeight" placeholder="请输入最大起飞重量" clearable
           @keyup.enter.native="handleQuery" />
       </el-form-item>
-      <el-form-item label="最大任务载荷kg" prop="missionWeight">
+      <el-form-item label="任务载荷kg" prop="missionWeight">
         <el-input v-model="queryParams.missionWeight" placeholder="请输入最大任务载荷" clearable
           @keyup.enter.native="handleQuery" />
       </el-form-item>
-      <el-form-item label="最大飞行速度m/s" prop="flySpeed">
+      <el-form-item label="飞行速度m/s" prop="flySpeed">
         <el-input v-model="queryParams.flySpeed" placeholder="请输入最大飞行速度m/s" clearable @keyup.enter.native="handleQuery" />
       </el-form-item>
-      <el-form-item label="最大飞行高度m" prop="flyHeight">
+      <el-form-item label="飞行高度m" prop="flyHeight">
         <el-input v-model="queryParams.flyHeight" placeholder="请输入最大飞行高度m" clearable @keyup.enter.native="handleQuery" />
       </el-form-item>
       <el-form-item label="电池mah" prop="droneBattery">
@@ -59,7 +59,7 @@
 
     <el-table v-loading="loading" :data="infoList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="编号" align="center" prop="id" show-overflow-tooltip />
+      <!-- <el-table-column label="编号" align="center" prop="id" show-overflow-tooltip /> -->
       <el-table-column label="无人机编号" align="center" prop="droneNumer" />
       <el-table-column label="无人机类型" align="center" prop="droneType" />
       <el-table-column label="轴距" align="center" prop="droneWheelbase" />
@@ -67,10 +67,21 @@
       <el-table-column label="最大任务载荷kg" align="center" prop="missionWeight" />
       <el-table-column label="最大飞行速度m/s" align="center" prop="flySpeed" />
       <el-table-column label="最大飞行高度m" align="center" prop="flyHeight" />
-      <el-table-column label="是否损坏" align="center" prop="droneStatus" />
+      <el-table-column label="是否损坏" align="center" prop="droneStatus" >
+        <template slot-scope="scope">
+          <el-tag v-if="scope.row.droneStatus === '1'" type="warning">损坏</el-tag>
+          <el-tag v-if="scope.row.droneStatus !== '1'" type="success">未损坏</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column label="电池mah" align="center" prop="droneBattery" />
       <el-table-column label="续航时间min" align="center" prop="droneEndurance" />
       <el-table-column label="制造商" align="center" prop="droneManuf" />
+      <el-table-column label="启用状态" align="center" >
+        <template slot-scope="scope">
+          <el-tag v-if="scope.row.isEnabled === '1'" type="success">启用</el-tag>
+          <el-tag v-if="scope.row.isEnabled !== '1'" type="warning">未启用</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button size="mini" type="text" icon="el-icon-refresh-left" @click="handleSoftware(scope.row)"

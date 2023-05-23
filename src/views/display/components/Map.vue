@@ -60,7 +60,7 @@ export default {
       zoomOffset: -1,
       accessToken: 'pk.eyJ1IjoidHJhbnNjZW5kdHJlZSIsImEiOiJja3N6eHRiMzkxeXNzMm90Y2Rhd2JmbjNqIn0.bCRv7xB55jHSDwEF5y5DcA'
     })
-    // this.map.setView([51.505, -0.09], 13);
+    this.map.setView([39.08607290863458,121.80813155137004], 16);
     this.$leaflet.zoomControl({ position: 'topright' }).addTo(this.map)
     this.$leaflet.zoomAttribution(
       {
@@ -107,10 +107,15 @@ export default {
     // 获取坐标
     queryLatlng() {
       let latlng = {
-        lat: 39.08343208067558,
-        lng: 121.81061116978528
+        lat : 39.08607290863458,
+        lng : 121.80813155137004,
       }
       // console.log(latlng)
+      this.map.on('click', (e) => {
+        latlng = e.latlng
+        console.log(latlng)
+        // this.drawDepot(latlng)
+      })
       this.drawUav(latlng)
     },
     // 传入坐标,绘制无人机
